@@ -1,6 +1,5 @@
 package com.aws.spring;
 
-import com.aws.spring.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

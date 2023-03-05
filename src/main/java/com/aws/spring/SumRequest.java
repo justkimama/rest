@@ -1,6 +1,5 @@
 package com.aws.spring;
 
-import com.aws.spring.Inventory;
 import lombok.Data;
 
 @Data
