@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @RestController
+@RequestMapping("/v1")
 @RequiredArgsConstructor
 public class v1Controller {
 
@@ -17,7 +18,7 @@ public class v1Controller {
     private final RestExceptionHandler exception;
 
     // Update, Create Stocks
-    @PostMapping(value = "v1/stocks")
+    @PostMapping(value = "/stocks")
     public ResponseEntity postStocks(@RequestBody StockRequest request) throws UnknownHostException {
         HttpHeaders headers = new HttpHeaders();
         String address = InetAddress.getLocalHost().getHostAddress();
@@ -31,24 +32,24 @@ public class v1Controller {
     }
 
     //Check Stocks
-    @GetMapping(value = "v1/stocks")
+    @GetMapping(value = "/stocks")
     public ResponseEntity getStocks() {
         return ResponseEntity.ok(allService.showInventoryAll());
     }
 
-    @GetMapping(value = "v1/stocks/{name}")
+    @GetMapping(value = "/stocks/{name}")
     public ResponseEntity getStocksName(@PathVariable String name) {
         return ResponseEntity.ok(allService.showInventory(name));
     }
 
     //Check Sales
-    @GetMapping(value = "v1/sales")
+    @GetMapping(value = "/sales")
     public ResponseEntity getSales(){
         return ResponseEntity.ok(allService.showPrice().get(0));
     }
 
     //Sales
-    @PostMapping(value = "v1/sales")
+    @PostMapping(value = "/sales")
     public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request) throws UnknownHostException {
         HttpHeaders headers = new HttpHeaders();
         String address = InetAddress.getLocalHost().getHostAddress();
@@ -62,7 +63,7 @@ public class v1Controller {
     }
 
     //Delete All
-    @DeleteMapping("v1/stocks")
+    @DeleteMapping("/stocks")
     public void deleteStocks(){
         allService.deleteAll();
     }
