@@ -1,21 +1,15 @@
-package com.aws.spring.controller;
+package com.aws.spring;
 
-import com.aws.spring.request.AddRequest;
 import com.aws.spring.request.SellRequest;
 import com.aws.spring.request.StockRequest;
-import com.aws.spring.request.SumRequest;
 import com.aws.spring.service.AllService;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONArray;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/v1")

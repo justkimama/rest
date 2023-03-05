@@ -1,4 +1,4 @@
-package com.aws.spring.controller;
+package com.aws.spring;
 
 import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
