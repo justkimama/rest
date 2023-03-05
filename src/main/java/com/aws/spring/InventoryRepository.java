@@ -1,4 +1,4 @@
-package com.aws.spring.entity;
+package com.aws.spring;
 
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

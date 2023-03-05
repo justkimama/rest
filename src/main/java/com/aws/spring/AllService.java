@@ -1,10 +1,7 @@
-package com.aws.spring.service;
+package com.aws.spring;
 
-import com.aws.spring.entity.Inventory;
-import com.aws.spring.entity.InventoryRepository;
-import com.aws.spring.request.*;
+import com.aws.spring.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.aws.spring.request;
+package com.aws.spring;
 
-import com.aws.spring.entity.Inventory;
+import com.aws.spring.Inventory;
 import lombok.Data;
 
 @Data

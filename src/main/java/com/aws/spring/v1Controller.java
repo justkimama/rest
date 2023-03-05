@@ -1,8 +1,5 @@
 package com.aws.spring;
 
-import com.aws.spring.request.SellRequest;
-import com.aws.spring.request.StockRequest;
-import com.aws.spring.service.AllService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

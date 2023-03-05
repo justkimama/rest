@@ -1,13 +1,11 @@
-package com.aws.spring.request;
+package com.aws.spring;
 
-import com.aws.spring.entity.Inventory;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SellRequest {
+public class StockRequest {
     private String name;
     private String amount;
-    private String price;
 }

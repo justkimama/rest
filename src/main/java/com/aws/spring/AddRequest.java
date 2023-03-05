@@ -1,4 +1,4 @@
-package com.aws.spring.request;
+package com.aws.spring;
 
 import lombok.Data;
 

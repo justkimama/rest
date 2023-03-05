@@ -1,4 +1,4 @@
-package com.aws.spring.entity;
+package com.aws.spring;
 
 import jakarta.persistence.*;
 import lombok.*;
