@@ -20,10 +20,9 @@ public class v1Controller {
 
     // Update, Create Stocks
     @PostMapping(value = "/stocks")
-    public ResponseEntity postStocks(@RequestBody StockRequest request) throws Exception {
+    public ResponseEntity postStocks(@RequestBody StockRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        String address = InetAddress.getLocalHost().getHostAddress();
-        headers.add("Location", address + ":80/v1/stocks/" + request.getName());
+        headers.add("Location", "54.92.25.214:80:80/v1/stocks/" + request.getName());
         if (allService.searchName(request) == null){    //Check name exists
             allService.addInventory(request);
         } else {
@@ -45,10 +44,9 @@ public class v1Controller {
 
     //Sales
     @PostMapping(value = "/sales")
-    public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request, HttpServletRequest http) throws UnknownHostException {
+    public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        String address = InetAddress.getLocalHost().getHostAddress();
-        headers.add("Location", address + ":80/v1/sales/" + request.getName());
+        headers.add("Location", "54.92.25.214:80/v1/sales/" + request.getName());
         if (allService.searchName(request) == null) {
             return exception.handleError();
         } else {
