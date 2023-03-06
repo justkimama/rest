@@ -22,7 +22,7 @@ public class v1Controller {
     @PostMapping(value = "/stocks")
     public ResponseEntity postStocks(@RequestBody StockRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "54.92.25.214:80:80/v1/stocks/" + request.getName());
+        headers.add("Location", "54.92.25.214:80/v1/stocks/" + request.getName());
         if (allService.searchName(request) == null){    //Check name exists
             allService.addInventory(request);
         } else {
