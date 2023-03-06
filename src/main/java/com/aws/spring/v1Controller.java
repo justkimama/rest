@@ -1,5 +1,6 @@
 package com.aws.spring;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,9 @@ public class v1Controller {
 
     // Update, Create Stocks
     @PostMapping(value = "/stocks")
-    public ResponseEntity postStocks(@RequestBody StockRequest request) throws UnknownHostException {
+    public ResponseEntity postStocks(@RequestBody StockRequest request, HttpServletRequest http) {
         HttpHeaders headers = new HttpHeaders();
-        String address = InetAddress.getLocalHost().getHostAddress();
+        String address = http.getRemoteAddr();
         headers.add("Location", address + ":80/v1/stocks/" + request.getName());
         if (allService.searchName(request) == null){    //Check name exists
             allService.addInventory(request);
@@ -50,9 +51,9 @@ public class v1Controller {
 
     //Sales
     @PostMapping(value = "/sales")
-    public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request) throws UnknownHostException {
+    public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request, HttpServletRequest http) {
         HttpHeaders headers = new HttpHeaders();
-        String address = InetAddress.getLocalHost().getHostAddress();
+        String address = http.getRemoteAddr();
         headers.add("Location", address + ":80/v1/sales/" + request.getName());
         if (allService.searchName(request) == null) {
             return exception.handleError();
