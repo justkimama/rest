@@ -6,6 +6,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 @RestController
 @RequestMapping("/v1")
 @RequiredArgsConstructor
@@ -17,9 +20,9 @@ public class v1Controller {
 
     // Update, Create Stocks
     @PostMapping(value = "/stocks")
-    public ResponseEntity postStocks(@RequestBody StockRequest request, HttpServletRequest http) {
+    public ResponseEntity postStocks(@RequestBody StockRequest request) throws Exception {
         HttpHeaders headers = new HttpHeaders();
-        String address = http.getRemoteAddr();
+        String address = InetAddress.getLocalHost().getHostAddress();
         headers.add("Location", address + ":80/v1/stocks/" + request.getName());
         if (allService.searchName(request) == null){    //Check name exists
             allService.addInventory(request);
@@ -42,9 +45,9 @@ public class v1Controller {
 
     //Sales
     @PostMapping(value = "/sales")
-    public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request, HttpServletRequest http) {
+    public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request, HttpServletRequest http) throws UnknownHostException {
         HttpHeaders headers = new HttpHeaders();
-        String address = http.getRemoteAddr();
+        String address = InetAddress.getLocalHost().getHostAddress();
         headers.add("Location", address + ":80/v1/sales/" + request.getName());
         if (allService.searchName(request) == null) {
             return exception.handleError();
