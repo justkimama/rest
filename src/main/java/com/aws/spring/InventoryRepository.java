@@ -38,7 +38,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     @Transactional
     @Query(value = "UPDATE aws_table a SET a.amount = a.amount - :amount, a.price = a.price + :price WHERE a.name = :name"
             , nativeQuery = true)
-    int updateAmountAndPrice(int amount, int price, String name);
+    int updateAmountAndPrice(@Param("amount") int amount, @Param("price") int price, @Param("name") String name);
 
     @Modifying
     @Transactional
