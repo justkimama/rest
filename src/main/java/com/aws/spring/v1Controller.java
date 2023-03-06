@@ -43,12 +43,6 @@ public class v1Controller {
         return ResponseEntity.ok(allService.showInventory(name));
     }
 
-    //Check Sales
-    @GetMapping(value = "/sales")
-    public ResponseEntity getSales(){
-        return ResponseEntity.ok(allService.showPrice().get(0));
-    }
-
     //Sales
     @PostMapping(value = "/sales")
     public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request, HttpServletRequest http) {
@@ -62,6 +56,12 @@ public class v1Controller {
             allService.subtractInventory(request);
             return ResponseEntity.ok().headers(headers).body(request);
         }
+    }
+
+    //Check Sales
+    @GetMapping(value = "/sales")
+    public ResponseEntity getSales(){
+        return ResponseEntity.ok(allService.showPrice().get(0));
     }
 
     //Delete All
