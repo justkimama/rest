@@ -6,9 +6,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 @RestController
 @RequestMapping("/v1")
 @RequiredArgsConstructor
@@ -16,7 +13,7 @@ public class v1Controller {
 
     private final AllService allService;
 
-//    private final RestExceptionHandler exception;
+    private final RestExceptionHandler exception;
 
     // Update, Create Stocks
     @PostMapping(value = "/stocks")
@@ -50,8 +47,7 @@ public class v1Controller {
         String address = http.getRemoteAddr();
         headers.add("Location", address + ":80/v1/sales/" + request.getName());
         if (allService.searchName(request) == null) {
-//            return exception.handleError();
-            return ResponseEntity.ok(request);
+            return exception.handleError();
         } else {
             allService.subtractInventory(request);
             return ResponseEntity.ok().headers(headers).body(request);
