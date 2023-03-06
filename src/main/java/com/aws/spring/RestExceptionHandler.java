@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
 @ControllerAdvice
-public class RestExceptionHandler {
+public class RestExceptionHandler { //use for normal exception errors
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity handleError() {

@@ -13,14 +13,7 @@ public class AllService {
 
     private final InventoryRepository inventoryRepository;
 
-    public AddRequest changeForm(StockRequest stockRequest) {
-        AddRequest request = new AddRequest();
-        request.setName(stockRequest.getName());
-        request.setAmount(Integer.parseInt(stockRequest.getAmount()));
-        return request;
-    }
-
-    public String searchName(StockRequest request) {
+    public String searchName(StockRequest request) {    // search name
         return inventoryRepository.findName(request.getName());
     }
 
@@ -28,19 +21,19 @@ public class AllService {
         return inventoryRepository.findName(request.getName());
     }
 
-    public Inventory addInventory(StockRequest request) {
+    public Inventory addInventory(StockRequest request) {   // create name, price, amount
         Inventory inventory = new Inventory();
         inventory.setName(request.getName());
-        inventory.setPrice(0);
-        if (request.getAmount() == null){
-            inventory.setAmount(1);
+        inventory.setPrice(0);  // default 0
+        if (request.getAmount() == null){   // check amount exists
+            inventory.setAmount(1); // default 1
         } else {
             inventory.setAmount(Integer.parseInt(request.getAmount()));
         }
         return inventoryRepository.save(inventory);
     }
 
-    public int updateInventory(StockRequest request) {
+    public int updateInventory(StockRequest request) {  //update price, amount
         Inventory inventory = new Inventory();
         inventory.setName(request.getName());
         if (request.getAmount() == null){
@@ -53,7 +46,7 @@ public class AllService {
 
     public Map<String, Integer> showInventory(String name) {
         List<Inventory> inventory = inventoryRepository.findAllAmountByName(name);
-        return inventory.stream().map(SumRequest::new).collect(Collectors.toMap(SumRequest::getName,SumRequest::getAmount));
+        return inventory.stream().map(SumRequest::new).collect(Collectors.toMap(SumRequest::getName,SumRequest::getAmount));    // entity to dto
     }
 
     public Map<String, Integer> showInventoryAll() {
@@ -74,19 +67,19 @@ public class AllService {
         if (request.getAmount() != null){
             amount = Integer.parseInt(request.getAmount());
         }
-        if(request.getPrice() != null) {   //Check price value exists or not
+        if(request.getPrice() != null) {   // check price value exists or not
             price = Integer.parseInt(request.getPrice());
         } else {
             price = 0;
         }
-        int total = price*amount;  //Price X Amount
+        int total = price*amount;  // price x amount
         inventory.setName(name);
         inventory.setAmount(amount);
         inventory.setPrice(price);
         return inventoryRepository.updateAmountAndPrice(amount, total, name);
     }
 
-    public void deleteAll() {
+    public void deleteAll() { // delete all
         inventoryRepository.deleteAll();
     }
 

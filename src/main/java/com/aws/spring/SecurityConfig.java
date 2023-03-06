@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig {   //apache 80, tomcat 8080, between them 8081 to connect to the other sides
     @Value("${tomcat.ajp.protocol}")
     String ajpProtocol;
 

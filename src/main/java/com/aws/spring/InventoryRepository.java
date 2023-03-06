@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 
-    @Query(value = "SELECT * FROM aws_table a WHERE a.name = binary :name"    //For NativeQuery
+    @Query(value = "SELECT * FROM aws_table a WHERE a.name = binary :name"    //check name is upper case
             , nativeQuery = true)
     String findName(@Param("name") String name);
 
@@ -20,7 +20,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             , nativeQuery = true)
     List<Inventory> findAllAmount();
 
-    @Query(value = "SELECT '' as name, '' as amount, sum(a.price) as price FROM aws_table a"
+    @Query(value = "SELECT '' as name, '' as amount, sum(a.price) as price FROM aws_table a"    //get sum value, and define other values null
             , nativeQuery = true)
     List<Inventory> findAllPrice();
 

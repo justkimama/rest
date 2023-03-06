@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class PriceRequest {
-    private double sales;
+    private double sales;   //return 100.0
     public PriceRequest (Inventory inventory) {
         sales = inventory.getPrice();
     }

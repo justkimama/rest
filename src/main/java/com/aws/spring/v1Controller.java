@@ -1,13 +1,9 @@
 package com.aws.spring;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 @RestController
 @RequestMapping("/v1")
@@ -22,7 +18,7 @@ public class v1Controller {
     @PostMapping(value = "/stocks")
     public ResponseEntity postStocks(@RequestBody StockRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "54.92.25.214:80/v1/stocks/" + request.getName());
+        headers.add("Location", "54.92.25.214:80/v1/stocks/" + request.getName());  //header: Location with elastic ip
         if (allService.searchName(request) == null){    //Check name exists
             allService.addInventory(request);
         } else {
@@ -37,7 +33,7 @@ public class v1Controller {
         return ResponseEntity.ok(allService.showInventoryAll());
     }
 
-    @GetMapping(value = "/stocks/{name}")
+    @GetMapping(value = "/stocks/{name}")   //get path
     public ResponseEntity getStocksName(@PathVariable String name) {
         return ResponseEntity.ok(allService.showInventory(name));
     }
@@ -48,7 +44,7 @@ public class v1Controller {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "54.92.25.214:80/v1/sales/" + request.getName());
         if (allService.searchName(request) == null) {
-            return exception.handleError();
+            return exception.handleError(); //if name doesn't exist, return error
         } else {
             allService.subtractInventory(request);
             return ResponseEntity.ok().headers(headers).body(request);
@@ -59,7 +55,7 @@ public class v1Controller {
     @GetMapping(value = "/sales")
     public ResponseEntity getSales(){
         return ResponseEntity.ok(allService.showPrice().get(0));
-    }
+    }   //get index 0
 
     //Delete All
     @DeleteMapping("/stocks")
