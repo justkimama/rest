@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/rest")
 @RequiredArgsConstructor
 public class v1Controller {
 
@@ -15,10 +15,10 @@ public class v1Controller {
     private final RestExceptionHandler exception;
 
     // Update, Create Stocks
-    @PostMapping(value = "/stocks")
+    @PostMapping(value = "/inventory")
     public ResponseEntity postStocks(@RequestBody StockRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "54.92.25.214:80/v1/stocks/" + request.getName());  //header: Location with elastic ip
+        headers.add("Location", "00.00.00.00:80/rest/inventory/" + request.getName());  //header: Location with elastic ip
         if (allService.searchName(request) == null){    //Check name exists
             allService.addInventory(request);
         } else {
@@ -28,21 +28,21 @@ public class v1Controller {
     }
 
     //Check Stocks
-    @GetMapping(value = "/stocks")
+    @GetMapping(value = "/inventory")
     public ResponseEntity getStocks() {
         return ResponseEntity.ok(allService.showInventoryAll());
     }
 
-    @GetMapping(value = "/stocks/{name}")   //get path
+    @GetMapping(value = "/inventory/{name}")   //get path
     public ResponseEntity getStocksName(@PathVariable String name) {
         return ResponseEntity.ok(allService.showInventory(name));
     }
 
     //Sales
-    @PostMapping(value = "/sales")
+    @PostMapping(value = "/sell")
     public ResponseEntity<SellRequest> postSales(@RequestBody SellRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "54.92.25.214:80/v1/sales/" + request.getName());
+        headers.add("Location", "00.00.00.00:80/rest/sell/" + request.getName());
         if (allService.searchName(request) == null) {
             return exception.handleError(); //if name doesn't exist, return error
         } else {
@@ -52,13 +52,13 @@ public class v1Controller {
     }
 
     //Check Sales
-    @GetMapping(value = "/sales")
+    @GetMapping(value = "/sell")
     public ResponseEntity getSales(){
         return ResponseEntity.ok(allService.showPrice().get(0));
     }   //get index 0
 
     //Delete All
-    @DeleteMapping("/stocks")
+    @DeleteMapping("/inventory")
     public void deleteStocks(){
         allService.deleteAll();
     }
