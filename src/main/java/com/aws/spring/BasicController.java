@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BasicController {
     @GetMapping("/")
     public ResponseEntity home (){
-        return ResponseEntity.ok("AWS");
+        return ResponseEntity.ok("Success");
     }
-    @GetMapping("/secret")
+    @GetMapping("/auth")
     public ResponseEntity secret (){
-        return ResponseEntity.ok("SUCCESS");
+        return ResponseEntity.ok("Authorized");
     }
 }
