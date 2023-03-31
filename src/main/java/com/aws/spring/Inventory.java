@@ -8,7 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 @Getter
 @Setter
 @Entity
-@Table(name = "aws_table")
+@Table(name = "table")
 public class Inventory {
     @Id
     @Column(name = "name", nullable = false)
