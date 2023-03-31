@@ -1,4 +1,4 @@
-Spring Boot Application for basic REST API transaction.
+Spring Boot Application for REST API transaction with JSON data.
 
 Spring JPA Data for DB connection.
 
